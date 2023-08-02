@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
 import "./i18n.js"
-import { ThemeProvider } from "@material-tailwind/react"
 import { BrowserRouter } from "react-router-dom"
+import { ChakraProvider } from "@chakra-ui/react"
+import { sleep } from './utils/sleep.ts'
+import Splash from './pages/Splash/Splash.tsx'
+// import App from './App.tsx'
+const App = lazy(async () => {
+  await sleep(5000)
+  return import("./App.tsx")
+})
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <ChakraProvider>
+        <Suspense fallback={<Splash />}>
+          <App />
+        </Suspense>
+      </ChakraProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode >,
 )

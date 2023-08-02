@@ -21,8 +21,8 @@ i18n
         loadPath: getBaseUrl()+"/locals/{{lng}}/{{ns}}.json"
     },
     detection: {
-        order: ['cookie', 'localStorage'],
-        caches: ['cookie', 'localStorage']
+        order: ['localStorage'],
+        caches: ['localStorage']
     }
 })
 

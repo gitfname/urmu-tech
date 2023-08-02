@@ -1,0 +1,20 @@
+@keyframes anim-1 {
+    from {
+        text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    to {
+        text-shadow: 0 0 60px rgba(255, 255, 255, 0.6),
+                    0 0 140px rgba(255, 255, 255, 0.7),
+                    0 0 220px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.animate_text_shadow span span {
+    animation-name: anim-1;
+    animation-duration: 1.3s;
+    animation-delay: 2.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}

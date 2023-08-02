@@ -1,13 +1,15 @@
 
+import { AiOutlineMenu } from "react-icons/ai"
 import {
     Drawer,
-    IconButton,
-} from "@material-tailwind/react"
-import {
-    XMarkIcon,
-    Bars3Icon
-} from "@heroicons/react/24/outline";
-import { useDisclosure } from "@chakra-ui/react"
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    DrawerBody,
+    useDisclosure
+} from "@chakra-ui/react"
+import { Link } from "react-router-dom"
+import { ApplicationRoutes } from "../../routes"
 
 function MobileMenu() {
 
@@ -15,19 +17,59 @@ function MobileMenu() {
 
     return (
         <>
-            <IconButton variant="text" size="sm" className="bg-blue-500/5" onClick={onOpen}>
-                <Bars3Icon strokeWidth={1.5} className="w-4 h-4" />
-            </IconButton>
-        
+            <button onClick={onOpen} className="text-white py-2.5 px-3.5 bg-white/5 rounded-lg">
+                <AiOutlineMenu className="w-5 h-5 fill-gray-200" />
+            </button>
+
             <Drawer
-                open={isOpen}
+                isOpen={isOpen}
                 onClose={onClose}
+                placement="left"
             >
-                <div className="flex justify-end py-3 px-3 pb-6">
-                    <IconButton size="sm" onClick={onClose} variant="text">
-                        <XMarkIcon strokeWidth={1.5} className="w-4 h-4" />
-                    </IconButton>
-                </div>
+
+                <DrawerOverlay />
+
+                <DrawerContent>
+
+                    <DrawerCloseButton />
+
+                    <DrawerBody
+                        pt="3.6rem"
+                        px="1rem"
+                        display="flex"
+                        flexDirection="column"
+                        rowGap="18px"
+                        bgColor="#1e293b"
+                    >
+
+                        <Link
+                            onClick={onClose}
+                            to={ApplicationRoutes.pages.home}
+                            className="text-base text-slate-100 font-normal tracking-wide"
+                        >
+                            Home
+                        </Link>
+
+                        <Link
+                            onClick={onClose}
+                            to={ApplicationRoutes.pages.about}
+                            className="text-base text-slate-100 font-normal tracking-wide"
+                        >
+                            About
+                        </Link>
+
+                        <Link
+                            onClick={onClose}
+                            to={ApplicationRoutes.pages.orderProject}
+                            className="text-base text-slate-100 font-normal tracking-wide"
+                        >
+                            Order Project
+                        </Link>
+
+                    </DrawerBody>
+
+                </DrawerContent>
+
             </Drawer>
         </>
     )
